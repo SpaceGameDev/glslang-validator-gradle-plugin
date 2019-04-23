@@ -27,17 +27,22 @@ So currently the easiest way will be to do the steps described in `Development o
 To develop this plugin you want to be able to edit the source while also having your own project open to see the changes you do in effect.
 
 1. Add this repo as a subproject to your git repo:
+
+`bash:`
 ```bash
 $ git submodule add git@github.com:SpaceGameDev/glslang-validator-gradle-plugin.git glslang-validator-gradle-plugin
 ```
 
 2. clone and/or pull the subproject:
+
+`bash:`
 ```bash
 $ git submodule update
 ```
 
 3. Tell gradle to include this gradle project (or build in gradle terms) into your project (or build).
-settings.gradle
+
+`settings.gradle:` 
 ```groovy
 includeBuild 'glslang-validator-gradle-plugin'
 ```
