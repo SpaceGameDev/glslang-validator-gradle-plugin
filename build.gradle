@@ -6,7 +6,7 @@ plugins {
 gradlePlugin {
 	plugins {
 		simplePlugin {
-			id = 'glslang-validator-gradle-plugin'
+			id = 'glslang-validator'
 			implementationClass = 'space.glslangValidator.GlslPlugin'
 		}
 	}
