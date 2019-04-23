@@ -30,7 +30,7 @@ To develop this plugin you want to be able to edit the source while also having 
 
 `bash:`
 ```bash
-$ git submodule add git@github.com:SpaceGameDev/glslang-validator-gradle-plugin.git glslang-validator-gradle-plugin
+$ git submodule add https://github.com/SpaceGameDev/glslang-validator-gradle-plugin.git glslang-validator-gradle-plugin
 ```
 
 2. clone and/or pull the subproject:
@@ -46,6 +46,6 @@ $ git submodule update
 ```groovy
 includeBuild 'glslang-validator-gradle-plugin'
 ```
-As composite builds of plugins can somethimes be funky it is recommended to put this line **before** any other includeBuild and in all root projects
+As composite builds of plugins can sometimes be funky it is recommended to put this line **before** any other includeBuild and in all root projects
 
 Now gradle will instead of downloading it as a library use the project directly and build from source
