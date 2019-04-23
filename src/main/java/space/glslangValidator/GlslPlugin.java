@@ -27,7 +27,7 @@ public class GlslPlugin implements Plugin<Project> {
 			
 			sourceSet.getResources().getFilter().exclude(element -> glslSourcesSet.getGlsl().contains(element.getFile()));
 			
-			final String sourceSetChildPath = "classes/" + glslSourcesSet.getGlsl().getName() + "/" + sourceSet.getName();
+			final String sourceSetChildPath = "classes/java/" + sourceSet.getName();
 			glslSourcesSet.getGlsl().setOutputDir(project.provider(() -> new File(project.getBuildDir(), sourceSetChildPath)));
 			
 			GlslCompileTask compileTask = project.getTasks().create(sourceSet.getCompileTaskName("glsl"), GlslCompileTask.class, glslCompileTask ->
