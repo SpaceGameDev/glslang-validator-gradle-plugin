@@ -1,16 +1,28 @@
 plugins {
-    id 'java'
+	id 'java-library'
+	id 'java-gradle-plugin'
+}
+
+gradlePlugin {
+	plugins {
+		simplePlugin {
+			id = 'glslang-validator-gradle-plugin'
+			implementationClass = 'space.glslangValidator.GlslPlugin'
+		}
+	}
 }
 
 group 'SpaceGameDev'
 version '1.0'
 
-sourceCompatibility = 1.8
+targetCompatibility = 1.10
+sourceCompatibility = 1.10
 
 repositories {
-    mavenCentral()
+	mavenLocal()
+	mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+	testCompile 'junit:junit:4.12'
 }
