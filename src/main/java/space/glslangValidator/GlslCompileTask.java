@@ -6,6 +6,7 @@ import org.gradle.api.file.SourceDirectorySet;
 import org.gradle.api.tasks.InputFiles;
 import org.gradle.api.tasks.OutputDirectory;
 import org.gradle.api.tasks.TaskAction;
+import org.gradle.process.internal.ExecException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -46,14 +47,19 @@ public class GlslCompileTask extends DefaultTask {
 				//noinspection ResultOfMethodCallIgnored
 				target.getParentFile().mkdirs();
 				
-				getProject().exec(execSpec -> {
-					try {
-						execSpec.commandLine("glslangValidator", "-V", src.getCanonicalPath(), "-o", target.getCanonicalPath());
-						execSpec.setStandardOutput(new ByteArrayOutputStream());
-					} catch (IOException e) {
-						throw new RuntimeException(e);
-					}
-				});
+				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				try {
+					getProject().exec(execSpec -> {
+						try {
+							execSpec.commandLine("glslangValidator", "-V", src.getCanonicalPath(), "-o", target.getCanonicalPath());
+							execSpec.setStandardOutput(outputStream);
+						} catch (IOException e) {
+							throw new RuntimeException(e);
+						}
+					});
+				} catch (ExecException e) {
+					throw new ExecException(e.getMessage() + "\n" + outputStream.toString(), e);
+				}
 			});
 		}
 	}
